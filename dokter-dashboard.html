@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stunt Watch</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="icon" href="/gambar/logo-title.png" type="image/png">
+</head>
+<body>
+    
+    <header>
+        <div class="navbar">
+            <div class="logo">
+                <img src="/gambar/logo-diatas.png" alt="Stunt Watch Logo">
+                <h2>Stunt Watch</h2>
+            </div>
+            <nav>
+                <a href="dokter-dashboard.html">Home</a>
+                <a href="data-anak-dokter.html">Data Anak</a>
+                <a href="riwayat-kesehatan-dokter.html">Riwayat Kesehatan</a>
+                <a href="konsultasi-dokter.html">Konsultasi</a>
+                <a href="rekomendasi-dokter.html">Rekomendasi</a>
+            </nav>
+            <div class="profile-btn" onclick="toggleMenu();">
+                <img src="/gambar/dokter1.jpg" alt="Profile Picture" class="profile-img">
+               
+                <i class="fas fa-chevron-down"></i> 
+                <div class="profile-menu" id="profileMenu">
+                    <a href="profile.html" class="menu-item">Lihat Profil</a>
+                    <a href="login.html" class="menu-item">Logout</a>
+                </div>
+            </div>
+            
+        </div>
+    </header>
+    <main>
+        <section class="hero">
+            <div class="hero-text">
+                
+                <h1>Stunt Watch</h1>
+                <p>Monitoring Kesehatan & Stunting</p>
+                <button class="explore-btn">Explore More</button>
+            </div>
+            <img src="/gambar/header.png" alt="Hero Image" class="hero-image">
+        </section>
+        <section class="stats">
+            <div class="stat-box">
+                <h3>Stunt Watch</h3>
+                
+            </div>
+            <div class="stat-box">
+                <h3>10 jt</h3>
+                <p>Telah bergabung dengan mitra kami di seluruh Indonesia</p>
+            </div>
+            <div class="stat-box">
+                <h3>4.8 <i class="fas fa-star"></i></h3>
+                <p>460 rb ulasan</p>
+            </div>
+            <div class="stat-box">
+                <h3>Rating 4+</h3>
+            </div>
+        </section>
+        
+        <section class="features">
+            <div class="feature-box">
+                <a href="data-anak-dokter.html">
+                    <i class="fas fa-child"></i>
+                    <h4>Data Anak</h4>
+                </a>
+            </div>
+            <div class="feature-box">
+                <a href="riwayat-kesehatan-dokter.html">
+                    <i class="fas fa-file-medical-alt"></i>
+                    <h4>Riwayat Kesehatan</h4>
+                </a>
+            </div>
+            <div class="feature-box">
+                <a href="konsultasi-dokter.html">
+                    <i class="fas fa-user-md"></i>
+                    <h4>Konsultasi</h4>
+                </a>
+            </div>
+            <div class="feature-box">
+                <a href="rekomendasi-dokter.html">
+                    <i class="fas fa-lightbulb"></i>
+                    <h4>Rekomendasi</h4>
+                </a>
+            </div>
+        </section>
+        
+        
+        <section class="promo">
+            <p style="color: white; text-align: center;font-size: 50px; " >Penawaran</p>
+
+            <div class="promo-cards">
+                <div class="promo-card large">
+                    <img src="/gambar/promo1.png" alt="Gabung Sekarang" class="promo-image">
+                    <h3>Gabung Sekarang</h3>
+                    <p>Gratis 30 hari untuk pengguna baru</p>
+                </div>
+                <div class="promo-card large">
+                    <img src="/gambar/promo2.png" alt="Cegah Stunting" class="promo-image">
+                    <h3>Cegah Stunting</h3>
+                    <p>Voucher Rp50.000 untuk tantangan 30 hari</p>
+                </div>
+                <div class="promo-card large">
+                    <img src="/gambar/penawaran.png" alt="Cegah Stunting" class="promo-image">
+                    <h3>Cegah Stunting</h3>
+                    <p>Voucher Rp50.000 untuk tantangan 30 hari</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="articles">
+            <p style="color: white; text-align: center;font-size: 50px; " >Baca Artikel</p>
+            <div class="article-cards">
+                <div class="article-card">
+                  
+                    <img src="/gambar/artikel1.png" alt="Apa Itu Stunting?" class="article-image">
+                    <h3>Apa Itu Stunting? Pengertian dan Bahayanya bagi Anak</h3>
+                    <a href="https://www.alodokter.com/bayi-lahir-stunting-faktor-penyebab-dan-risiko#:~:text=Seiring%20dengan%20bertambahnya%20usia%20anak%2C%20stunting%20dapat%20menyebabkan,memiliki%20penyakit%20diabetes%2C%20penyakit%20jantung%2C%20stroke%2C%20dan%20kanker">
+                        <p>Bahaya Stunting</p>
+                   </a>
+                </div>
+                <div class="article-card">
+                    <img src="/gambar/artikel2.png" alt="5 Tanda Anak Berisiko Mengalami Stunting" class="article-image">
+                    <h3>5 Tanda Anak Berisiko Mengalami Stunting bagi anak</h3>
+                    <a href="https://yankes.kemkes.go.id/view_artikel/1519/ciri-anak-stunting">
+                        <p>Tanda Stunting</p>
+                   </a>
+                </div>
+                <div class="article-card">
+                    <img src="/gambar/artikel3.png" alt="Pentingnya 1000 Hari Pertama Kehidupan untuk Mencegah Stunting" class="article-image">
+                    <h3>Pentingnya 1000 Hari Pertama Kehidupan untuk Mencegah Stunting</h3>
+                    <a href="https://ayosehat.kemkes.go.id/cara-mencegah-stunting-pada-anak">
+                        <p>Upaya Cegah</p>
+                   </a>
+                </div>
+                <div class="article-card">
+                    <img src="/gambar/artikel4.jpg" alt="Makanan yang Dapat Membantu Mencegah Stunting pada Anak" class="article-image">
+                    <h3>Makanan yang Dapat Membantu Mencegah Stunting pada Anak</h3>
+                    <a href="https://www.haibunda.com/parenting/20231228170303-59-324879/12-resep-menu-masakan-pencegah-stunting-yang-bernutrisi-dan-mudah-dibuat">
+                        <p>Makanan Sehat</p>
+                   </a>
+                </div>
+
+
+                
+            </div>
+        </section>
+
+        <footer>
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="/gambar/logo_stunt.png" alt="Stunt Watch Logo">
+                </div>
+                <div class="footer-text">
+                    <p>Stunt Watch</p>
+                    <p>Monitoring Kesehatan & Stunting</p>
+                </div>
+            </div>
+        </footer>
+        
+        
+        
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>

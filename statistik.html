@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Statistik</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+    
+        body {
+            background-color: #f8dada;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+    
+        .container {
+            display: flex;
+            height: 100vh;
+        }
+    
+        /* Sidebar styling */
+        .sidebar {
+            width: 250px;
+            background-color: #f8bbd0;
+            height: 100vh;
+            padding-top: 20px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+    
+        .sidebar h1 {
+            font-size: 24px;
+            color: white;
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 10px 0;
+            background-color: #ec407a;
+            border-radius: 5px;
+        }
+    
+        .sidebar ul {
+            list-style-type: none;
+            padding: 0;
+        }
+    
+        .sidebar ul li {
+            padding: 15px 20px;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            border-bottom: 1px solid #ec407a;
+        }
+    
+        .sidebar ul li a {
+            color: white;
+            text-decoration: none;
+            display: block;
+            width: 100%;
+        }
+    
+        .sidebar ul li:hover {
+            background-color: #ec407a;
+            transform: translateX(5px);
+        }
+    
+        .sidebar ul li.active {
+            background-color: #d81b60;
+            font-weight: bold;
+        }
+    
+        .sidebar ul li.active a {
+            color: white;
+        }
+    
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 200px;
+            }
+    
+            .container {
+                margin-left: 200px;
+            }
+    
+            .main {
+                margin-left: 200px;
+            }
+        }
+    
+        /* Main content styling */
+        .main {
+            flex: 1;
+            padding: 2px;
+            margin-left: 250px; /* Adjusted for fixed sidebar */
+        }
+    
+        .header {
+    background-color: #f8bbd0; /* Keep the background color */
+    padding: 40px; /* Adjusted padding to 15px to match the second CSS */
+    margin-left: -20px; /* Ensure there's space for the fixed sidebar */
+    color: white; /* Keep text color white */
+    margin-right: -20px; /* Adjust the right margin slightly */
+    font-size: 24px; /* Keep the font size as 24px */
+    text-align: center; /* Center the text */
+}
+
+    
+        
+    
+        .cards {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+    
+        .card {
+            flex: 1;
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 0 10px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+    
+        .card h3 {
+            font-size: 20px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+    
+        .card p {
+            font-size: 18px;
+            color: #555;
+        }
+    
+        .chart-container {
+            display: flex;
+            justify-content: space-between;
+        }
+    
+        .chart {
+            flex: 1;
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 0 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            max-height: 300px; /* Adjusted height for smaller charts */
+        }
+    
+        .footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #ff69b4;
+            color: white;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    
+        /* Add this to your existing CSS */
+        .summary {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            font-size: 16px;
+            color: #555;
+            line-height: 1.6;
+        }
+    </style>
+       <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <h1>Stunt Watch</h1>
+            <ul>
+                <li><a href="admin.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+            <li><a href="pengguna.html"><i class="fas fa-user"></i> Pengguna</a></li>
+            <li><a href="data-kesehatan.html"><i class="fas fa-heartbeat"></i> Data Kesehatan</a></li>
+            <li class="active"><a href="statistik.html"><i class="fas fa-chart-bar"></i> Statistik</a></li>
+            <li><a href="parameter.html"><i class="fas fa-cog"></i> Parameter</a></li>
+            <li><a href="login.html"></i> Logout</a></li>
+            </ul>
+        </div>
+        <div class="main">
+            <div class="header">
+                <h2>Statistik</h2>
+            </div>
+            <div class="cards">
+                <div class="card">
+                    <h3>Total Pengguna</h3>
+                    <p>2,359</p>
+                </div>
+                <div class="card">
+                    <h3>Kasus Stunting</h3>
+                    <p>420</p>
+                </div>
+                <div class="card">
+                    <h3>Data Kesehatan</h3>
+                    <p>2,0359</p>
+                </div>
+                <div class="card">
+                    <h3>Parameter Aktif</h3>
+                    <p>55</p>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <div class="chart">
+                    <h3>Trend Status Stunting</h3>
+                    <canvas id="trendChart"></canvas>
+                </div>
+                <div class="chart">
+                    <h3>Distribusi Usia</h3>
+                    <canvas id="ageChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="summary">
+        <p>
+            Stunt Watch provides real-time monitoring of key statistics related to stunting and health data. Currently, there are 
+            <strong>2,359 users</strong>, with <strong>420 reported stunting cases</strong>. The database holds <strong>2,035 health records</strong>, 
+            and <strong>55 active parameters</strong> for comprehensive analysis.
+        </p>
+    </div>
+    
+
+    <div class="footer">
+        Stunt Watch - Monitoring Kesehatan & Stunting
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const trendCtx = document.getElementById('trendChart').getContext('2d');
+        const trendChart = new Chart(trendCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Jan', 'Feb'],
+                datasets: [
+                    {
+                        label: 'Normal',
+                        data: [50, 60],
+                        backgroundColor: '#4caf50',
+                    },
+                    {
+                        label: 'Stunting',
+                        data: [30, 40],
+                        backgroundColor: '#ff9800',
+                    },
+                    {
+                        label: 'Stunting Berat',
+                        data: [20, 30],
+                        backgroundColor: '#f44336',
+                    },
+                ],
+            },
+            options: {
+                responsive: true,
+            },
+        });
+
+        const ageCtx = document.getElementById('ageChart').getContext('2d');
+        const ageChart = new Chart(ageCtx, {
+            type: 'pie',
+            data: {
+                labels: ['1-2 Tahun', '2-3 Tahun', '3-4 Tahun'],
+                datasets: [
+                    {
+                        data: [45, 30, 25],
+                        backgroundColor: ['#3f51b5', '#ffeb3b', '#ff5722'],
+                    },
+                ],
+            },
+            options: {
+                responsive: true,
+            },
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Kesehatan Anak - Stunt Watch</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style-dataanak.css">
+    <link rel="icon" href="/gambar/logo-title.png" type="image/png">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="navbar">
+                <div class="logo">
+                    <img src="/gambar/logo_stunt.png" alt="Stunt Watch Logo">
+                    <h2>Stunt Watch</h2>
+                </div>
+                <nav>
+                    <a href="after-login.html">Home</a>
+                    <a href="data-anak.html">Data Anak</a>
+                    <a href="riwayat-kesehatan.html">Riwayat Kesehatan</a>
+                    <a href="konsultasi.html">Konsultasi</a>
+                    <a href="rekomendasi.html">Rekomendasi</a>
+                </nav>
+                <div class="profile-btn" onclick="toggleMenu();">
+                    <img src="/gambar/faiq.jpg" alt="Profile Picture" class="profile-img">
+                   <div class="profile-menu" id="profileMenu">
+                        <a href="profile.html" class="menu-item">Lihat Profil</a>
+                        <a href="login.html" class="menu-item">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </header>
+            
+        <main>
+            <section class="data-section">
+                <div class="data-header">
+                    <h2>RIWAYAT KESEHATAN</h2>
+                    <img src="/gambar/riwayat.png" alt="Graph Icon" class="data-icon">
+                </div>
+
+                <div class="growth-data">
+                    <table id="healthHistoryTable">
+                        <thead>
+                            <tr>
+                                <th>TANGGAL</th>
+                                <th>KONDISI</th>
+                                <th>ALERGI</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Data will be dynamically inserted here -->
+                        </tbody>
+                    </table>
+                    <button class="update-btn" onclick="openModal()">TAMBAH DATA</button>
+                </div>
+            </section>
+        </main>
+
+        <!-- Modal Form -->
+        <div id="healthModal" class="modal">
+            <div class="modal-content">
+                <span class="close-btn" onclick="closeModal()">&times;</span>
+                <h3>Form Tambah Riwayat Kesehatan</h3>
+                <form id="healthForm">
+                    <label for="condition">Kondisi:</label>
+                    <input type="text" id="condition" name="condition" required><br><br>
+                    <label for="allergy">Alergi:</label>
+                    <input type="text" id="allergy" name="allergy" required><br><br>
+                    <label for="date">Tanggal:</label>
+                    <input type="date" id="date" name="date" required><br><br>
+                    <button type="submit">Tambah Data</button>
+                </form>
+            </div>
+        </div>
+      
+    </div>
+
+    <script>
+        // Function to open the modal
+        function openModal() {
+            document.getElementById("healthModal").style.display = "block";
+        }
+
+        // Function to close the modal
+        function closeModal() {
+            document.getElementById("healthModal").style.display = "none";
+        }
+
+        // Function to handle form submission and add data to the table
+        document.getElementById("healthForm").addEventListener("submit", function(event) {
+            event.preventDefault();  // Prevent page reload on form submission
+
+            // Get the input values
+            const condition = document.getElementById("condition").value;
+            const allergy = document.getElementById("allergy").value;
+            const date = document.getElementById("date").value;
+
+            // Save the data in localStorage
+            const healthData = { date, condition, allergy };
+            let healthHistory = JSON.parse(localStorage.getItem('healthData')) || [];
+            healthHistory.push(healthData);
+            localStorage.setItem('healthData', JSON.stringify(healthHistory));
+
+            // Clear the form fields
+            document.getElementById("healthForm").reset();
+
+            // Close the modal
+            closeModal();
+
+            // Re-render the table with updated data
+            renderHealthData();
+        });
+
+        // Function to load and display data from localStorage
+        function renderHealthData() {
+            const healthHistory = JSON.parse(localStorage.getItem('healthData')) || [];
+            const tableBody = document.getElementById('healthHistoryTable').getElementsByTagName('tbody')[0];
+            tableBody.innerHTML = ''; // Clear existing rows
+
+            // Loop through each health data and add rows to the table
+            healthHistory.forEach(function(data) {
+                const newRow = tableBody.insertRow(tableBody.rows.length);
+
+                // Insert new cells in the row and add the data
+                const cell1 = newRow.insertCell(0);
+                const cell2 = newRow.insertCell(1);
+                const cell3 = newRow.insertCell(2);
+
+                cell1.textContent = data.date;
+                cell2.textContent = data.condition;
+                cell3.textContent = data.allergy;
+            });
+        }
+
+        // Load data on page load
+        window.onload = function() {
+            renderHealthData();
+        };
+
+        // Close the modal if the user clicks outside of the modal
+        window.onclick = function(event) {
+            if (event.target == document.getElementById("healthModal")) {
+                closeModal();
+            }
+        };
+    </script>
+</body>
+</html>

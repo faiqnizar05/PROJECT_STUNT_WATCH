@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Kesehatan Anak - Stunt Watch</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style-dataanak.css">
+    <link rel="icon" href="/gambar/logo-title.png" type="image/png">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="navbar">
+                <div class="logo">
+                    <img src="/gambar/logo_stunt.png" alt="Stunt Watch Logo">
+                    <h2>Stunt Watch</h2>
+                </div>
+                <nav>
+                    <a href="after-login.html">Home</a>
+                    <a href="data-anak.html">Data Anak</a>
+                    <a href="riwayat-kesehatan.html">Riwayat Kesehatan</a>
+                    <a href="konsultasi.html">Konsultasi</a>
+                    <a href="rekomendasi.html">Rekomendasi</a>
+                </nav>
+                <div class="profile-btn" onclick="toggleMenu();">
+                    <img src="/gambar/faiq.jpg" alt="Profile Picture" class="profile-img">
+                   
+                    <div class="profile-menu" id="profileMenu">
+                        <a href="profile.html" class="menu-item">Lihat Profil</a>
+                        <a href="login.html" class="menu-item">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <main>
+            <section class="recommendation-section">
+                <div class="recommendation-header">
+                    <h2>REKOMENDASI</h2>
+                </div>
+                <div class="recommendation-box">
+                    <h3>Rekomendasi Utama</h3>
+                    <p>Berikan lebih banyak asupan protein hewani, seperti telur, ikan, dan daging ayam, dalam MPASI anak Anda</p>
+
+                    <h3>Grafik Status Gizi Saat Ini:</h3>
+                    <ul>
+                        <li><strong>Berat badan:</strong> 12 kg (kategori rendah untuk usia 4 tahun)</li>
+                        <li><strong>Tinggi badan:</strong> 75 cm (di bawah persentil 5)</li>
+                        <li><strong>Status:</strong> Risiko tinggi stunting</li>
+                    </ul>
+
+                    <h3>Saran Tindakan:</h3>
+                    <p>Tingkatkan frekuensi pemberian makanan bergizi 3 kali sehari, dengan 2 kali camilan sehat.</p>
+
+                    <!-- Display the data from localStorage -->
+                    <h3>Data yang Dimasukkan:</h3>
+                    <ul>
+                        <li><strong>Nama Pasien:</strong> <span id="patient-name"></span></li>
+                        <li><strong>Rekomendasi Utama:</strong> <span id="recommendation"></span></li>
+                        <li><strong>Grafik Status Gizi:</strong> <span id="nutrition-status"></span></li>
+                        <li><strong>Saran Tindakan:</strong> <span id="action-suggestion"></span></li>
+                    </ul>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        // Get data from localStorage and display it
+        document.getElementById("patient-name").textContent = localStorage.getItem("condition");
+        document.getElementById("recommendation").textContent = localStorage.getItem("allergy");
+        document.getElementById("nutrition-status").textContent = localStorage.getItem("date"); // or use another field for this
+        document.getElementById("action-suggestion").textContent = localStorage.getItem("allergy"); // Adjust as necessary
+    </script>
+</body>
+
+</html>

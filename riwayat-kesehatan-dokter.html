@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Riwayat Kesehatan - Stunt Watch</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style-riwayat.css">
+    <link rel="icon" href="/gambar/logo-title.png" type="image/png">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="navbar">
+                <div class="logo">
+                    <img src="/gambar/logo_stunt.png" alt="Stunt Watch Logo">
+                    <h2>Stunt Watch</h2>
+                </div>
+                <nav>
+                    <a href="dokter-dashboard.html">Home</a>
+                    <a href="data-anak-dokter.html">Data Anak</a>
+                    <a href="riwayat-kesehatan-dokter.html">Riwayat Kesehatan</a>
+                    <a href="konsultasi-dokter.html">Konsultasi</a>
+                    <a href="rekomendasi-dokter.html">Rekomendasi</a>
+                </nav>
+                <div class="profile-btn" onclick="toggleMenu();">
+                    <img src="/gambar/dokter1.jpg" alt="Profile Picture" class="profile-img">
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <section class="riwayat-section">
+                <div class="data-header">
+                    <h2>RIWAYAT KESEHATAN</h2>
+                    <img src="/gambar/riwayat.png" alt="Graph Icon" class="data-icon">
+                </div>
+
+                <!-- Tabel Riwayat Kesehatan Semua Anak -->
+                <table class="health-table">
+                    <thead>
+                        <tr>
+                            <th>TANGGAL</th>
+                            <th>KONDISI</th>
+                            <th>ALERGI</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Data will be inserted here dynamically -->
+                    </tbody>
+                </table>
+            </section>
+        </main>
+
+      
+    </div>
+
+    <script>
+        // Function to load health history data from localStorage
+        document.addEventListener('DOMContentLoaded', function() {
+            const healthHistory = JSON.parse(localStorage.getItem('healthData')) || [];
+
+            // Get the table body
+            const tableBody = document.querySelector('.health-table tbody');
+
+            // Loop through each health data and add rows to the table
+            healthHistory.forEach(function(data) {
+                const newRow = tableBody.insertRow(tableBody.rows.length);
+
+                // Insert new cells in the row and add the data
+                const cell1 = newRow.insertCell(0);
+                const cell2 = newRow.insertCell(1);
+                const cell3 = newRow.insertCell(2);
+
+                cell1.textContent = data.date;
+                cell2.textContent = data.condition;
+                cell3.textContent = data.allergy;
+            });
+        });
+    </script>
+</body>
+</html>

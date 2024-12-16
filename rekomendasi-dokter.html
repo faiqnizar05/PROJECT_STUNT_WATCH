@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Kesehatan Anak - Stunt Watch</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style-dataanak.css">
+    <link rel="icon" href="/gambar/logo-title.png" type="image/png">
+</head>
+
+
+<body>
+
+
+    <div class="container">
+        <header>
+            <div class="navbar">
+                <div class="logo">
+                    <img src="/gambar/logo_stunt.png" alt="Stunt Watch Logo">
+                    <h2>Stunt Watch</h2>
+                </div>
+                <nav>
+                    <a href="dokter-dashboard.html">Home</a>
+                    <a href="data-anak-dokter.html">Data Anak</a>
+                    <a href="riwayat-kesehatan-dokter.html">Riwayat Kesehatan</a>
+                    <a href="konsultasi-dokter.html">Konsultasi</a>
+                    <a href="rekomendasi-dokter.html">Rekomendasi</a>
+                </nav>
+                <div class="profile-btn" onclick="toggleMenu();">
+                    <img src="/gambar/dokter1.jpg" alt="Profile Picture" class="profile-img">
+                   
+                    <div class="profile-menu" id="profileMenu">
+                        <a href="profile.html" class="menu-item">Lihat Profil</a>
+                        <a href="login.html" class="menu-item">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <main>
+            <section class="recommendation-section">
+                <div class="recommendation-header">
+                    <h2>Form Tambah Riwayat Kesehatan</h2>
+                </div>
+                <div class="recommendation-box">
+                    <form id="healthForm">
+                        <label for="condition">Nama Pasien :</label>
+                        <input type="text" id="condition" name="condition" required><br>
+    
+                        <label for="allergy">Rekomendasi Utama :</label>
+                        <input type="text" id="allergy" name="allergy" required><br>
+    
+                        <label for="allergy">Grafik Status Gizi Saat Ini :</label>
+                        <input type="text" id="allergy" name="allergy" required><br>
+
+                        
+                        <label for="allergy">Saran Tindakan :</label>
+                        <input type="text" id="allergy" name="allergy" required><br>
+    
+                        <button type="submit">Rekomendasikan </button>
+                    </form>
+                </div>
+            </section>
+        </main>
+
+        <!-- Modal Form -->
+        <div id="healthModal" class="modal">
+            <div class="modal-content">
+                <span class="close-btn" onclick="closeModal()">&times;</span>
+                <h3>Form Tambah Riwayat Kesehatan</h3>
+                <form id="healthForm">
+                    <label for="condition">Kondisi:</label>
+                    <input type="text" id="condition" name="condition" required><br><br>
+                    <label for="allergy">Alergi:</label>
+                    <input type="text" id="allergy" name="allergy" required><br><br>
+                    <label for="date">Tanggal:</label>
+                    <input type="date" id="date" name="date" required><br><br>
+                    <button type="submit">Tambah Data</button>
+                </form>
+            </div>
+        </div>
+
+      
+    </div>
+   
+
+    <script>
+
+
+
+document.getElementById("healthForm").addEventListener("submit", function(event) {
+    event.preventDefault();  // Prevent page reload on form submission
+
+    // Get the input values
+    const condition = document.getElementById("condition").value;
+    const allergy = document.getElementById("allergy").value;
+    const date = document.getElementById("date").value;
+
+    // Store the data in localStorage
+    localStorage.setItem("condition", condition);
+    localStorage.setItem("allergy", allergy);
+    localStorage.setItem("date", date);
+
+    // Redirect to the recommendation page (rekomendasi.html)
+    window.location.href = "rekomendasi.html";
+});
+
+
+        // Function to open the modal
+function openModal() {
+    document.getElementById("healthModal").style.display = "block";
+}
+
+// Function to close the modal
+function closeModal() {
+    document.getElementById("healthModal").style.display = "none";
+}
+
+// Function to handle form submission and add data to the table
+document.getElementById("healthForm").addEventListener("submit", function(event) {
+    event.preventDefault();  // Prevent page reload on form submission
+
+    // Get the input values
+    const condition = document.getElementById("condition").value;
+    const allergy = document.getElementById("allergy").value;
+    const date = document.getElementById("date").value;
+
+    // Create a new row in the table
+    const table = document.getElementById("healthHistoryTable").getElementsByTagName('tbody')[0];
+    const newRow = table.insertRow(table.rows.length);
+
+    // Insert new cells in the row and add the data
+    const cell1 = newRow.insertCell(0);
+    const cell2 = newRow.insertCell(1);
+    const cell3 = newRow.insertCell(2);
+
+    cell1.textContent = date;
+    cell2.textContent = condition;
+    cell3.textContent = allergy;
+
+    // Clear the form fields
+    document.getElementById("healthForm").reset();
+
+    // Close the modal
+    closeModal();
+});
+
+// Close the modal if the user clicks outside of the modal
+window.onclick = function(event) {
+    if (event.target == document.getElementById("healthModal")) {
+        closeModal();
+    }
+}
+
+    </script>
+</body>
+</html>

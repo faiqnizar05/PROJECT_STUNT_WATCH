@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - Stunt Watch</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="icon" href="/gambar/logo-title.png" type="image/png">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f6f9;
+            color: #333;
+        }
+
+        .header {
+            background-color: #6065d8;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-bottom: 2px solid #4a51b6;
+            font-size: 24px;
+        }
+
+        .container {
+            width: 80%;
+            max-width: 1000px;
+            margin: 40px auto;
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .container:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .profile-info {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .profile-info img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #6065d8;
+            box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+
+        .user-details {
+            text-align: center;
+        }
+
+        .user-details h2 {
+            font-size: 26px;
+            color: #333;
+            margin: 0;
+        }
+
+        .user-details p {
+            font-size: 16px;
+            color: #555;
+            margin: 5px 0;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .form-group label {
+            font-size: 16px;
+            color: #333;
+            width: 30%;
+        }
+
+        .form-group input {
+            font-size: 16px;
+            padding: 10px;
+            width: 65%;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            background-color: #f5f5f5;
+            pointer-events: none; /* Disables the input field */
+        }
+
+        .profile-btns {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .btn {
+            background-color: #6065d8;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s ease;
+            margin: 10px;
+        }
+
+        .btn:hover {
+            background-color: #4a51b6;
+            transform: scale(1.05);
+        }
+
+        .edit-btn {
+            background-color: #4CAF50;
+        }
+
+        .edit-btn:hover {
+            background-color: #45a049;
+        }
+
+        .logout-btn {
+            background-color: #f44336;
+        }
+
+        .logout-btn:hover {
+            background-color: #e53935;
+        }
+
+        .menu-btn {
+            display: flex;
+            justify-content: space-between;
+            background-color: #6065d8;
+            color: white;
+            padding: 15px;
+            border-radius: 25px;
+            font-size: 18px;
+            cursor: pointer;
+            margin-top: 20px;
+            width: 220px;
+            align-items: center;
+            transition: background-color 0.3s ease;
+        }
+
+        .menu-btn i {
+            font-size: 20px;
+        }
+
+        .menu-btn:hover {
+            background-color: #4a51b6;
+        }
+
+        .profile-menu {
+            display: none;
+            background-color: #f1f1f1;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            margin-top: 10px;
+        }
+
+        .profile-menu a {
+            display: block;
+            padding: 12px 20px;
+            text-decoration: none;
+            color: #6065d8;
+            font-size: 16px;
+            border-bottom: 1px solid #ddd;
+            transition: background-color 0.3s ease;
+        }
+
+        .profile-menu a:hover {
+            background-color: #f0f0f0;
+        }
+
+        .profile-menu a:last-child {
+            border-bottom: none;
+        }
+
+        .profile-menu .delete-btn {
+            background-color: #f44336;
+            color: white;
+            font-weight: bold;
+        }
+
+        .profile-menu .delete-btn:hover {
+            background-color: #e53935;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                width: 90%;
+            }
+
+            .profile-info {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .form-group {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .form-group label {
+                width: 100%;
+                margin-bottom: 5px;
+            }
+
+            .form-group input {
+                width: 100%;
+            }
+
+            .profile-btns a {
+                width: 100%;
+                margin-top: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>Profile - Stunt Watch</h1>
+    </div>
+
+    <div class="container">
+        <!-- Profile Info Section -->
+        <form action="" method="post">
+            <div class="profile-info">
+                <img src="/gambar/faiq.jpg" alt="Profile Picture" onclick="uploadProfilePicture()">
+                <div class="user-details">
+                    <h2 id="fullNameDisplay">Muhammad Nizar Al-Faiq</h2>
+                    
+                </div>
+            </div>
+
+            <!-- Form Fields for Profile (Non-editable) -->
+            <div class="form-group">
+                <label for="fullName">Full Name</label>
+                <input type="text" id="fullName" name="fullName" value="Muhammad Nizar Al-Faiq" disabled>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" value="faiqnizar51@gmail.com" disabled>
+            </div>
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" value="pasien" disabled>
+            </div>
+            <div class="form-group">
+                <label for="joinDate">Join Date</label>
+                <input type="text" id="joinDate" name="joinDate" value="Desember 2024" disabled>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="profile-btns">
+                <a href="edit-profile.html" class="btn edit-btn">Edit Profile</a>
+                <a href="after-login.html" class="btn logout-btn">Kembali ke Dasboard</a>
+            </div>
+        </form>
+
+        <!-- Profile Options -->
+       
+    </div>
+
+    <script>
+        function toggleMenu() {
+            const profileMenu = document.getElementById('profileMenu');
+            const icon = document.querySelector('.menu-btn i');
+
+            // Toggle visibility of the dropdown menu
+            if (profileMenu.style.display === 'none') {
+                profileMenu.style.display = 'block';
+                icon.style.transform = 'rotate(180deg)';
+            } else {
+                profileMenu.style.display = 'none';
+                icon.style.transform = 'rotate(0deg)';
+            }
+        }
+
+        // Ambil data dari localStorage
+        const username = localStorage.getItem('username');
+        const fullName = localStorage.getItem('fullName');
+        const email = localStorage.getItem('email');
+        const joinDate = localStorage.getItem('joinDate');
+
+        // Menampilkan data pada elemen-elemen di halaman profil
+        document.getElementById('fullName').value = fullName;
+        document.getElementById('email').value = email;
+        document.getElementById('username').value = username;
+        document.getElementById('joinDate').value = joinDate;
+
+        // Menampilkan data ke elemen yang lebih visible
+        document.getElementById('fullNameDisplay').textContent = fullName;
+        document.getElementById('usernameDisplay').textContent = 'Username: ' + username;
+        document.getElementById('emailDisplay').textContent = 'Email: ' + email;
+        document.getElementById('joinDateDisplay').textContent = 'Join Date: ' + joinDate;
+    </script>
+
+</body>
+</html>

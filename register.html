@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stunt Watch</title>
+    <link rel="icon" href="/gambar/logo-title.png" type="image/png">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #ff69b4 50%, #8dbbe8 50%);
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            position: relative;
+        }
+
+        .background-shape {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #ff69b4 50%, #8dbbe8 50%);
+            clip-path: polygon(0 0, 100% 0, 100% 70%, 0 100%);
+            z-index: -2;
+        }
+
+        .container {
+            width: 400px;
+            background-color: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        .logo {
+            margin-bottom: 20px;
+        }
+
+        .logo img {
+            width: 80px;
+        }
+
+        h1 {
+            font-size: 26px;
+            color: #6065d8;
+            margin-bottom: 5px;
+        }
+
+        .subtitle {
+            font-size: 14px;
+            color: #888;
+            margin-bottom: 20px;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 12px;
+            color: #555;
+            margin-bottom: 5px;
+            text-align: left;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            font-size: 14px;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 10px;
+            background-color: #6065d8;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #4a51b6;
+        }
+
+        .links {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: #6065d8;
+            margin-top: 15px;
+        }
+
+        .links a {
+            text-decoration: none;
+            color: #6065d8;
+        }
+
+        .links a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="background-shape"></div>
+    <div class="wrapper">
+        <div class="container">
+            <div class="logo">
+                <img src="/gambar/logo_stunt.png" alt="Stunt Watch Logo">
+            </div>
+            <h1>Stunt Watch</h1>
+            <div class="subtitle">Monitoring Kesehatan & Stunting</div>
+            <div class="input-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" placeholder="Enter your Email">
+            </div>
+            <div class="input-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" placeholder="Enter your username">
+            </div>
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Enter your password">
+            </div>
+            <button class="btn" onclick="registerUser();">Register</button>
+            <div class="links">
+                <a href="login.html">Already have an account? Login</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function registerUser() {
+            // Ambil nilai dari input
+            const email = document.getElementById('email').value;
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            // Validasi jika ada input kosong
+            if (!email || !username || !password) {
+                alert("Please fill in all fields.");
+                return;
+            }
+
+            // Simpan data ke localStorage
+            localStorage.setItem('userEmail', email);
+            localStorage.setItem('username', username);
+            localStorage.setItem('password', password);
+
+            // Pindah ke halaman login setelah berhasil register
+            window.location.href = 'login.html';
+        }
+    </script>
+</body>
+</html>

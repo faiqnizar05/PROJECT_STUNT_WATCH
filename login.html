@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stunt Watch</title>
+
+    <!-- link untuk halaman -->
+    <link rel="icon" href="/gambar/logo-title.png" type="image/png">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #ff69b4 50%, #8dbbe8 50%);
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            position: relative;
+            color: #ff69b4;
+        }
+
+        .background-shape {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #ff69b4 50%, #8dbbe8 50%);
+            clip-path: polygon(0 0, 100% 0, 100% 70%, 0 100%);
+            z-index: -2;
+        }
+
+        .container {
+            width: 400px;
+            background-color: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        .logo {
+            margin-bottom: 20px;
+        }
+
+        .logo img {
+            width: 80px;
+        }
+
+        h1 {
+            font-size: 26px;
+            color: #6065d8;
+            margin-bottom: 5px;
+        }
+
+        .subtitle {
+            font-size: 14px;
+            color: #888;
+            margin-bottom: 20px;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 12px;
+            color: #555;
+            margin-bottom: 5px;
+            text-align: left;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            font-size: 14px;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 10px;
+            background-color: #6065d8;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #4a51b6;
+        }
+
+        .links {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: #6065d8;
+            margin-top: 15px;
+        }
+
+        .links a {
+            text-decoration: none;
+            color: #6065d8;
+        }
+
+        .links a:hover {
+            text-decoration: underline;
+        }
+
+        /* Style Notifikasi */
+        .notification {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #4CAF50; /* Green color */
+            color: white;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-size: 16px;
+            box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
+            display: none; /* Hidden by default */
+            opacity: 0;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            z-index: 1000;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .notification.show {
+            display: block;
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .notification.error {
+            background-color: #f44336; /* Red color for error */
+        }
+
+        .notification .close-btn {
+            position: absolute;
+            top: 5px;
+            right: 10px;
+            font-size: 18px;
+            color: white;
+            background: none;
+            border: none;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .notification .close-btn:hover {
+            color: #f1f1f1;
+        }
+
+        .notification i {
+            margin-right: 12px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div class="background-shape"></div>
+    <div class="wrapper">
+        <div class="container">
+            <div class="logo">
+                <img src="/gambar/logo_stunt.png" alt="Stunt Watch Logo">
+            </div>
+            <h1>Stunt Watch</h1>
+            <div class="subtitle">Monitoring Kesehatan & Stunting</div>
+            <div class="input-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" placeholder="Enter your username">
+            </div>
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Enter your password">
+            </div>
+            <button class="btn" onclick="loginUser();">Login</button>
+            
+            <div class="links">
+                <a href="register.html">Register</a>
+                <a href="#"></a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function loginUser() {
+            // Ambil nilai dari input
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+    
+            // Validasi login untuk Admin
+            if (username === 'admin' && password === '12345') {
+                // Jika login sebagai admin
+                localStorage.setItem('role', 'admin');
+                localStorage.setItem('username', username);
+                localStorage.setItem('fullName', 'Administrator');
+                localStorage.setItem('email', 'admin@stuntwatch.com');
+                localStorage.setItem('joinDate', 'Desember 2024');
+    
+                // Menampilkan notifikasi sukses
+                showNotification('Login berhasil! Selamat datang, Admin.', 'success');
+                setTimeout(() => {
+                    window.location.href = 'admin.html'; // Halaman admin
+                }, 2000);
+            } else if (username === 'pasien' && password === '12345') {
+                // Jika login sebagai pasien
+                localStorage.setItem('role', 'user');
+                localStorage.setItem('username', username);
+                localStorage.setItem('fullName', 'Muhammad Nizar Al-Faiq');
+                localStorage.setItem('email', 'faiqnizar51@gmail.com');
+                localStorage.setItem('joinDate', 'Desember 2024');
+    
+                // Menampilkan notifikasi sukses
+                showNotification('Login berhasil! Selamat datang, ' + username, 'success');
+                setTimeout(() => {
+                    window.location.href = 'after-login.html'; // Halaman pengguna biasa
+                }, 2000);
+            } else if (username === 'dokter' && password === '12345') {
+                // Jika login sebagai dokter
+                localStorage.setItem('role', 'dokter');
+                localStorage.setItem('username', username);
+                localStorage.setItem('fullName', 'Dr. Aulia Pratama');
+                localStorage.setItem('email', 'dokter@stuntwatch.com');
+                localStorage.setItem('joinDate', 'Desember 2024');
+    
+                // Menampilkan notifikasi sukses
+                showNotification('Login berhasil! Selamat datang, Dr. Aulia Pratama.', 'success');
+                setTimeout(() => {
+                    window.location.href = 'dokter-dashboard.html'; // Halaman dokter
+                }, 2000);
+            } else {
+                // Menampilkan notifikasi error
+                showNotification('Nama pengguna atau sandi tidak valid. Silakan coba lagi.', 'error');
+            }
+        }
+    
+        // Fungsi untuk menampilkan notifikasi
+        function showNotification(message, type) {
+            const notification = document.createElement('div');
+            notification.className = `notification ${type} show`;
+            notification.innerHTML = `
+                <button class="close-btn" onclick="closeNotification(this)">×</button>
+                <i class="fa fa-info-circle"></i> 
+                <span>${message}</span>
+            `;
+            document.body.appendChild(notification);
+    
+            // Menghilangkan notifikasi setelah beberapa detik
+            setTimeout(() => {
+                closeNotification(notification);
+            }, 4000); // Notifikasi akan hilang setelah 4 detik
+        }
+    
+        // Fungsi untuk menutup notifikasi
+        function closeNotification(notification) {
+            notification.classList.remove('show');
+            setTimeout(() => {
+                notification.remove();
+            }, 500); // Menghapus elemen setelah animasi selesai
+        }
+    </script>
+    
+</body>
+</html>

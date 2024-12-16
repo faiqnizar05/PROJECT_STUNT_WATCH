@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Kesehatan Anak - Stunt Watch</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style-dataanak.css">
+    <link rel="icon" href="/gambar/logo-title.png" type="image/png">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="navbar">
+                <div class="logo">
+                    <img src="/gambar/logo_stunt.png" alt="Stunt Watch Logo">
+                    <h2>Stunt Watch</h2>
+                </div>
+                <nav>
+                    <a href="after-login.html">Home</a>
+                    <a href="data-anak.html">Data Anak</a>
+                    <a href="riwayat-kesehatan.html">Riwayat Kesehatan</a>
+                    <a href="konsultasi.html">Konsultasi</a>
+                    <a href="rekomendasi.html">Rekomendasi</a>
+                </nav>
+                <div class="profile-btn" onclick="toggleMenu();">
+                    <img src="/gambar/faiq.jpg" alt="Profile Picture" class="profile-img">
+                    <div class="profile-menu" id="profileMenu">
+                        <a href="profile.html" class="menu-item">Lihat Profil</a>
+                        <a href="login.html" class="menu-item">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </header>
+            
+        <main>
+            <section class="data-section">
+                <div class="data-header">
+                    <h2>KONSULTASI KESEHATAN</h2>
+                    <img src="/gambar/konsultasi.png" alt="Graph Icon" class="data-icon">
+                </div>
+
+                <div class="growth-data">
+                    <table id="consultationTable">
+                        <thead>
+                            <tr>
+                                <th>TANGGAL</th>
+                                <th>NAMA ANAK / NUTRISI</th>
+                                <th>TOPIK KONSULTASI</th>
+                                <th>STATUS KONSULTASI</th>
+                                <th>DOKUMENTASI</th> <!-- Added column for image -->
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Rows will be added here dynamically -->
+                        </tbody>
+                    </table>
+                    <button class="update-btn" onclick="openModal()">KONSULTASI</button>
+                </div>
+            </section>
+        </main>
+
+        <!-- Modal Form -->
+        <div id="consultationModal" class="modal">
+            <div class="modal-content">
+                <span class="close-btn" onclick="closeModal()">&times;</span>
+                <h3>Form Konsultasi Kesehatan</h3>
+                <form id="consultationForm" onsubmit="saveConsultation(event)">
+                    <label for="doctorName">Nama Anak:</label>
+                    <input type="text" id="doctorName" name="doctorName" required><br><br>
+                    <label for="consultationTopic">Topik Konsultasi:</label>
+                    <input type="text" id="consultationTopic" name="consultationTopic" required><br><br>
+                    <label for="problemDescription">Deskripsi Masalah:</label>
+                    <input type="text" id="problemDescription" name="problemDescription" required><br><br>
+                    <label for="consultationDate">Tanggal:</label>
+                    <input type="date" id="consultationDate" name="consultationDate" required><br><br>
+                    
+                    <!-- File upload field -->
+                    <label for="consultationImage">Upload Foto:</label>
+                    <input type="file" id="consultationImage" name="consultationImage" accept="image/*"><br><br>
+                    
+                    <!-- Display the uploaded image -->
+                    <div id="imagePreview" style="display:none;">
+                        <h4>Preview Foto:</h4>
+                        <img id="previewImage" src="" alt="Image Preview" style="max-width: 200px; max-height: 200px;">
+                    </div>
+
+                    <button type="submit">Kirim Konsultasi</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // Open Modal
+        function openModal() {
+            document.getElementById('consultationModal').style.display = 'block';
+        }
+
+        // Close Modal
+        function closeModal() {
+            document.getElementById('consultationModal').style.display = 'none';
+        }
+
+        // Preview the uploaded image
+        document.getElementById('consultationImage').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            const preview = document.getElementById('imagePreview');
+            const previewImage = document.getElementById('previewImage');
+            
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    previewImage.src = e.target.result;
+                    preview.style.display = 'block';
+                };
+                reader.readAsDataURL(file);
+            } else {
+                preview.style.display = 'none';
+            }
+        });
+
+        // Load saved consultations from localStorage
+        function loadConsultations() {
+            const consultations = JSON.parse(localStorage.getItem('consultations')) || [];
+            const table = document.getElementById('consultationTable').getElementsByTagName('tbody')[0];
+            
+            consultations.forEach(function(consultation) {
+                const newRow = table.insertRow();
+                
+                const dateCell = newRow.insertCell(0);
+                const nameCell = newRow.insertCell(1);
+                const topicCell = newRow.insertCell(2);
+                const statusCell = newRow.insertCell(3);
+                const imageCell = newRow.insertCell(4);
+                
+                dateCell.textContent = consultation.date;
+                nameCell.textContent = consultation.name + ' / ' + consultation.problem;
+                topicCell.textContent = consultation.topic;
+                statusCell.textContent = consultation.status;
+                
+                if (consultation.image) {
+                    const img = document.createElement('img');
+                    img.src = consultation.image;
+                    img.style.maxWidth = '100px';
+                    img.style.maxHeight = '100px';
+                    imageCell.appendChild(img);
+                }
+            });
+        }
+
+        // Save Consultation data and add to the table
+        function saveConsultation(event) {
+            event.preventDefault();
+
+            // Get form data
+            const doctorName = document.getElementById('doctorName').value;
+            const consultationTopic = document.getElementById('consultationTopic').value;
+            const problemDescription = document.getElementById('problemDescription').value;
+            const consultationDate = document.getElementById('consultationDate').value;
+            const consultationImage = document.getElementById('consultationImage').files[0]; // Get the uploaded file
+
+            // Prepare the image URL
+            let imageUrl = '';
+            if (consultationImage) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    imageUrl = e.target.result;
+                    saveConsultationData(doctorName, consultationTopic, problemDescription, consultationDate, imageUrl);
+                };
+                reader.readAsDataURL(consultationImage);
+            } else {
+                saveConsultationData(doctorName, consultationTopic, problemDescription, consultationDate, '');
+            }
+        }
+
+        // Save consultation data in localStorage
+        function saveConsultationData(doctorName, consultationTopic, problemDescription, consultationDate, imageUrl) {
+            const consultations = JSON.parse(localStorage.getItem('consultations')) || [];
+            
+            const newConsultation = {
+                name: doctorName,
+                topic: consultationTopic,
+                problem: problemDescription,
+                date: consultationDate,
+                status: 'Proses', // Default status
+                image: imageUrl
+            };
+
+            consultations.push(newConsultation);
+            localStorage.setItem('consultations', JSON.stringify(consultations));
+            
+            // Update the table on the page
+            const table = document.getElementById('consultationTable').getElementsByTagName('tbody')[0];
+            const newRow = table.insertRow();
+            
+            const dateCell = newRow.insertCell(0);
+            const nameCell = newRow.insertCell(1);
+            const topicCell = newRow.insertCell(2);
+            const statusCell = newRow.insertCell(3);
+            const imageCell = newRow.insertCell(4);
+            
+            dateCell.textContent = consultationDate;
+            nameCell.textContent = doctorName + ' / ' + problemDescription;
+            topicCell.textContent = consultationTopic;
+            statusCell.textContent = 'Proses'; // Default status
+            
+            if (imageUrl) {
+                const img = document.createElement('img');
+                img.src = imageUrl;
+                img.style.maxWidth = '100px';
+                img.style.maxHeight = '100px';
+                imageCell.appendChild(img);
+            }
+
+            // Close the modal after saving
+            closeModal();
+
+            // Clear the form
+            document.getElementById('consultationForm').reset();
+            document.getElementById('imagePreview').style.display = 'none';
+        }
+
+        // Call the function to load consultations on page load
+        window.onload = loadConsultations;
+
+
+        function saveConsultationData(doctorName, consultationTopic, problemDescription, consultationDate, imageUrl) {
+    const consultations = JSON.parse(localStorage.getItem('consultations')) || [];
+
+    const newConsultation = {
+        name: doctorName,
+        topic: consultationTopic,
+        problem: problemDescription,
+        date: consultationDate,
+        status: 'Proses',
+        image: imageUrl
+    };
+
+    consultations.push(newConsultation);
+    localStorage.setItem('consultations', JSON.stringify(consultations));
+
+    // Update table in konsultasi.html
+    updateTable(newConsultation);
+    closeModal();
+    document.getElementById('consultationForm').reset();
+    document.getElementById('imagePreview').style.display = 'none';
+}
+
+function updateTable(consultation) {
+    const table = document.getElementById('consultationTable').getElementsByTagName('tbody')[0];
+    const newRow = table.insertRow();
+
+    newRow.innerHTML = `
+        <td>${consultation.date}</td>
+        <td>${consultation.name} / ${consultation.problem}</td>
+        <td>${consultation.topic}</td>
+        <td>${consultation.status}</td>
+        <td><img src="${consultation.image}" style="max-width: 100px; max-height: 100px;"></td>
+    `;
+}
+
+    </script>
+</body>
+</html>

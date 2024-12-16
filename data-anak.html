@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Kesehatan Anak - Stunt Watch</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style-dataanak.css">
+    <link rel="icon" href="/gambar/logo-title.png" type="image/png">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="navbar">
+                <div class="logo">
+                    <img src="/gambar/logo_stunt.png" alt="Stunt Watch Logo">
+                    <h2>Stunt Watch</h2>
+                </div>
+                <nav>
+                    <a href="after-login.html">Home</a>
+                    <a href="data-anak.html">Data Anak</a>
+                    <a href="riwayat-kesehatan.html">Riwayat Kesehatan</a>
+                    <a href="konsultasi.html">Konsultasi</a>
+                    <a href="rekomendasi.html">Rekomendasi</a>
+                </nav>
+                <div class="profile-btn" onclick="toggleMenu();">
+                    <img src="/gambar/faiq.jpg" alt="Profile Picture" class="profile-img">
+                  
+                    <div class="profile-menu" id="profileMenu">
+                        <a href="profile.html" class="menu-item">Lihat Profil</a>
+                        <a href="login.html" class="menu-item">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </header>
+            
+        <main>
+            <section class="data-section">
+                <div class="data-header">
+                    <h2>DATA KESEHATAN ANAK</h2>
+                    <img src="/gambar/dataanak.png" alt="Graph Icon" class="data-icon">
+                </div>
+
+                <div class="info-card">
+                    <h3>Informasi dasar anak</h3>
+                    <table id="infoTable">
+                        <!-- This data will be filled dynamically from localStorage -->
+                    </table>
+                    <button class="edit-btn" onclick="editData()">EDIT DATA</button>
+                </div>
+
+                <div class="data-header">
+                    <h2>DATA PERTUMBUHAN ANAK</h2>
+                    <img src="/gambar/GRAFF.png" alt="Graph Icon" class="data-icon">
+                </div>
+
+                <div class="growth-data">
+                    <h3>Data Pertumbuhan</h3>
+                    <table id="growthTable">
+                        <thead>
+                            <tr>
+                                <th>TGL UPDATE</th>
+                                <th>TINGGI BADAN</th>
+                                <th>BERAT BADAN</th>
+                                <th>LINGKAR KEPALA</th>
+                                <th>IMUNISASI TERBARU</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- This data will be filled dynamically from localStorage -->
+                        </tbody>
+                    </table>
+                    <button class="update-btn" onclick="updateData()">UPDATE</button>
+                </div>
+            </section>
+        </main>
+
+     
+    </div>
+
+    <script>
+
+        // Simpan data kesehatan dasar anak ke localStorage
+function saveInfo() {
+    const info = {
+        name: "KANGGURU",
+        dob: "25 Feb 2020",
+        gender: "L",
+        bloodType: "O",
+        age: "4th"
+    };
+
+    localStorage.setItem("childInfo", JSON.stringify(info));
+}
+
+// Simpan data kesehatan (pertumbuhan) ke localStorage
+function saveGrowth() {
+    const growthData = [
+        {
+            date: "01 Jan 2024",
+            height: "90 cm",
+            weight: "12 kg",
+            headCircumference: "45 cm",
+            immunization: "DPT 1"
+        }
+    ];
+
+    localStorage.setItem("growthData", JSON.stringify(growthData));
+}
+
+// Load data kesehatan dasar anak dari localStorage
+function loadInfo() {
+    const info = JSON.parse(localStorage.getItem("childInfo"));
+    if (info) {
+        const table = document.getElementById("infoTable");
+        table.innerHTML = `
+            <tr>
+                <td><strong>NAMA ANAK</strong></td>
+                <td>${info.name}</td>
+            </tr>
+            <tr>
+                <td><strong>TGL LAHIR</strong></td>
+                <td>${info.dob}</td>
+            </tr>
+            <tr>
+                <td><strong>JENIS KELAMIN</strong></td>
+                <td>${info.gender}</td>
+            </tr>
+            <tr>
+                <td><strong>G. DARAH</strong></td>
+                <td>${info.bloodType}</td>
+            </tr>
+            <tr>
+                <td><strong>UMUR</strong></td>
+                <td>${info.age}</td>
+            </tr>
+        `;
+    }
+}
+
+// Load data pertumbuhan anak dari localStorage
+function loadGrowth() {
+    const growthData = JSON.parse(localStorage.getItem("growthData"));
+    if (growthData) {
+        const table = document.getElementById("growthTable").getElementsByTagName('tbody')[0];
+        growthData.forEach(data => {
+            const newRow = table.insertRow(table.rows.length);
+            newRow.innerHTML = `
+                <td>${data.date}</td>
+                <td>${data.height}</td>
+                <td>${data.weight}</td>
+                <td>${data.headCircumference}</td>
+                <td>${data.immunization}</td>
+            `;
+        });
+    }
+}
+
+// Edit Data Function
+function editData() {
+    const info = {
+        name: prompt("Enter child's name:", "KANGGURU"),
+        dob: prompt("Enter date of birth:", "25 Feb 2020"),
+        gender: prompt("Enter gender:", "L"),
+        bloodType: prompt("Enter blood type:", "O"),
+        age: prompt("Enter age:", "4th")
+    };
+    localStorage.setItem("childInfo", JSON.stringify(info));
+    loadInfo();  // Reload info after editing
+}
+
+// Update Data Function
+function updateData() {
+    const growthData = [
+        {
+            date: prompt("Enter date:", "01 Jan 2024"),
+            height: prompt("Enter height:", "90 cm"),
+            weight: prompt("Enter weight:", "12 kg"),
+            headCircumference: prompt("Enter head circumference:", "45 cm"),
+            immunization: prompt("Enter immunization:", "DPT 1")
+        }
+    ];
+
+    localStorage.setItem("growthData", JSON.stringify(growthData));
+    loadGrowth();  // Reload growth data after update
+}
+
+// On page load, load the data from localStorage
+window.onload = function() {
+    loadInfo();
+    loadGrowth();
+    if (!localStorage.getItem("childInfo")) saveInfo();  // Save default data if not present
+    if (!localStorage.getItem("growthData")) saveGrowth();  // Save default growth data if not present
+};
+ 
+    </script>
+</body>
+</html>

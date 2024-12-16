@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Profile - Stunt Watch</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="icon" href="/gambar/logo-title.png" type="image/png">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f6f9;
+            color: #333;
+        }
+
+        .header {
+            background-color: #6065d8;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-bottom: 2px solid #4a51b6;
+            font-size: 24px;
+        }
+
+        .container {
+            width: 80%;
+            max-width: 1000px;
+            margin: 40px auto;
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .container:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .form-group label {
+            font-size: 16px;
+            color: #333;
+            width: 30%;
+        }
+
+        .form-group input {
+            font-size: 16px;
+            padding: 10px;
+            width: 65%;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            background-color: #f5f5f5;
+        }
+
+        .form-group button {
+            background-color: #6065d8;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s ease;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .form-group button:hover {
+            background-color: #4a51b6;
+            transform: scale(1.05);
+        }
+
+        .back-btn {
+            display: inline-block;
+            background-color: #f44336;
+            padding: 12px 20px;
+            color: white;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 16px;
+            margin-top: 10px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .back-btn:hover {
+            background-color: #e53935;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>Edit Profile - Stunt Watch</h1>
+    </div>
+
+    <div class="container">
+        <form id="editForm">
+            <!-- Form Fields for Profile Edit -->
+            <div class="form-group">
+                <label for="fullName">Full Name</label>
+                <input type="text" id="fullName" name="fullName">
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email">
+            </div>
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username">
+            </div>
+            <div class="form-group">
+                <button type="submit">Simpan</button>
+            </div>
+        </form>
+
+        <a href="profile.html" class="back-btn">Kembali </a>
+    </div>
+
+    <script>
+        // Ambil data dari localStorage untuk diisi ke form
+        document.getElementById('fullName').value = localStorage.getItem('fullName');
+        document.getElementById('email').value = localStorage.getItem('email');
+        document.getElementById('username').value = localStorage.getItem('username');
+
+        // Menyimpan perubahan ke localStorage saat form disubmit
+        document.getElementById('editForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const fullName = document.getElementById('fullName').value;
+            const email = document.getElementById('email').value;
+            const username = document.getElementById('username').value;
+
+            // Simpan perubahan ke localStorage
+            localStorage.setItem('fullName', fullName);
+            localStorage.setItem('email', email);
+            localStorage.setItem('username', username);
+
+            // Menampilkan notifikasi atau mengarahkan ke halaman profil
+            alert('Profile updated successfully!');
+            window.location.href = 'profile.html'; // Ganti dengan halaman profil setelah update
+        });
+    </script>
+
+</body>
+</html>

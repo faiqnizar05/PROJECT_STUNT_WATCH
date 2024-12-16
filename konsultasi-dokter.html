@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Kesehatan Anak - Stunt Watch</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style-dataanak.css">
+    <link rel="icon" href="/gambar/logo-title.png" type="image/png">
+   
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <div class="logo">
+                <img src="/gambar/logo_stunt.png" alt="Stunt Watch Logo">
+                <h2>Stunt Watch</h2>
+            </div>
+            <nav>
+                <a href="dokter-dashboard.html">Home</a>
+                <a href="data-anak-dokter.html">Data Anak</a>
+                <a href="riwayat-kesehatan-dokter.html">Riwayat Kesehatan</a>
+                <a href="konsultasi-dokter.html">Konsultasi</a>
+                <a href="rekomendasi-dokter.html">Rekomendasi</a>
+            </nav>
+            <div class="profile-btn" onclick="toggleMenu();">
+                <img src="/gambar/dokter1.jpg" alt="Profile Picture" class="profile-img">
+                <div class="profile-menu" id="profileMenu">
+                    <a href="profile.html" class="menu-item">Lihat Profil</a>
+                    <a href="login.html" class="menu-item">Logout</a>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="container content">
+        <!-- Card 1 -->
+     
+
+     
+
+
+      
+    </div>
+
+    
+</body>
+<script>
+    function loadDoctorConsultations() {
+    const consultations = JSON.parse(localStorage.getItem('consultations')) || [];
+    const container = document.querySelector('.content');
+
+    consultations.forEach(consultation => {
+        const card = document.createElement('div');
+        card.className = 'card';
+
+        card.innerHTML = `
+            <div class="details">
+                <div><span>Nama Anak:</span> ${consultation.name}</div>
+                <div><span>Topik:</span> ${consultation.topic}</div>
+                <div><span>Deskripsi Masalah:</span> ${consultation.problem}</div>
+                <div><span>Dokumen:</span></div>
+                <img src="${consultation.image}" alt="Dokumen" style="max-width: 100px; max-height: 100px;">
+            </div>
+            <a href="rekomendasi-dokter.html" class="recommend-button">Rekomendasikan</a>
+        `;
+
+        container.appendChild(card);
+    });
+}
+
+window.onload = loadDoctorConsultations;
+
+</script>
+</html>

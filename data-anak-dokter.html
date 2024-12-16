@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Kesehatan Anak - Stunt Watch</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style-dataanak.css">
+    <link rel="icon" href="/gambar/logo-title.png" type="image/png">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="navbar">
+                <div class="logo">
+                    <img src="/gambar/logo_stunt.png" alt="Stunt Watch Logo">
+                    <h2>Stunt Watch</h2>
+                </div>
+                <nav>
+                    <a href="dokter-dashboard.html">Home</a>
+                    <a href="data-anak-dokter.html">Data Anak</a>
+                    <a href="riwayat-kesehatan-dokter.html">Riwayat Kesehatan</a>
+                    <a href="konsultasi-dokter.html">Konsultasi</a>
+                    <a href="rekomendasi-dokter.html">Rekomendasi</a>
+                </nav>
+                <div class="profile-btn" onclick="toggleMenu();">
+                    <img src="/gambar/dokter1.jpg" alt="Profile Picture" class="profile-img">
+                    <div class="profile-menu" id="profileMenu">
+                        <a href="profile.html" class="menu-item">Lihat Profil</a>
+                        <a href="login.html" class="menu-item">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </header>
+            
+        <main>
+            <section class="data-section">
+                <div class="data-header">
+                    <h2>DATA KESEHATAN ANAK</h2>
+                    <img src="/gambar/dataanak.png" alt="Graph Icon" class="data-icon">
+                </div>
+                
+                <table id="infoTable">
+                    <thead>
+                        <tr>
+                            <th>Informasi Dasar Anak</th>
+                            <th>Detail</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- The table will be dynamically populated with data from localStorage -->
+                    </tbody>
+                </table>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        // Load child information from localStorage and populate the table
+        function loadChildInfo() {
+            const info = JSON.parse(localStorage.getItem("childInfo"));
+            if (info) {
+                const table = document.getElementById("infoTable").getElementsByTagName('tbody')[0];
+                table.innerHTML = `
+                    <tr>
+                        <td><strong>NAMA ANAK</strong></td>
+                        <td>${info.name}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>TGL LAHIR</strong></td>
+                        <td>${info.dob}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>JENIS KELAMIN</strong></td>
+                        <td>${info.gender}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>G. DARAH</strong></td>
+                        <td>${info.bloodType}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>UMUR</strong></td>
+                        <td>${info.age}</td>
+                    </tr>
+                `;
+            }
+        }
+
+        // Call the function to load child info when the page loads
+        window.onload = function() {
+            loadChildInfo();
+        };
+    </script>
+</body>
+</html>

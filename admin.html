@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Admin</title>
+    <style>
+
+
+/* Card container styling */
+.card.stats {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    flex-wrap: wrap; /* Ensures items wrap on smaller screens */
+    gap: 20px;
+}
+
+/* Individual stat item styling */
+.stat-item {
+    flex: 1;
+    min-width: 200px;  /* Prevent items from getting too narrow */
+    padding: 20px;
+    background-color: #f8bbd0;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+/* Title styling */
+.stat-item h3 {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+/* Value styling */
+.stat-item p {
+    font-size: 24px;
+    color: #d81b60;
+    font-weight: bold;
+}
+
+/* Hover effect to make the stats more interactive */
+.stat-item:hover {
+    background-color: #ec407a;
+    transform: translateY(-5px);
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    .card.stats {
+        flex-direction: column;
+    }
+}
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #fce4ec;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: #f8bbd0;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            padding-top: 20px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .sidebar h1 {
+            font-size: 24px;
+            color: white;
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 10px 0;
+            background-color: #ec407a;
+            border-radius: 5px;
+        }
+
+        .sidebar ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .sidebar ul li {
+            padding: 15px 20px;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            border-bottom: 1px solid #ec407a;
+        }
+
+        .sidebar ul li a {
+            color: white;
+            text-decoration: none;
+            display: block;
+            width: 100%;
+        }
+
+        .sidebar ul li:hover {
+            background-color: #ec407a;
+            transform: translateX(5px);
+        }
+
+        .sidebar ul li.active {
+            background-color: #d81b60;
+            font-weight: bold;
+        }
+
+        .sidebar ul li.active a {
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 200px;
+            }
+
+            .header {
+                margin-left: 200px;
+        
+            }
+
+            .container {
+                margin-left: 200px;
+            }
+        }
+
+        .header {
+            background-color: #f8bbd0;
+            padding: 40px;
+            margin-left: 250px;
+            color: white;
+            margin-right: 2px;
+            font-size: 24px;
+            text-align: center; 
+        }
+
+        .container {
+            margin-left: 250px;
+            padding: 20px;
+        }
+    </style>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="sidebar">
+        <h1>Stunt Watch</h1>
+        <ul>
+            <li class="active"><a href="admin.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+            <li><a href="pengguna.html"><i class="fas fa-user"></i> Pengguna</a></li>
+            <li><a href="data-kesehatan.html"><i class="fas fa-heartbeat"></i> Data Kesehatan</a></li>
+            <li><a href="statistik.html"><i class="fas fa-chart-bar"></i> Statistik</a></li>
+            <li><a href="parameter.html"><i class="fas fa-cog"></i> Parameter</a></li>
+            <li><a href="login.html"></i> Logout</a></li>
+        </ul>
+    </div>
+
+    <div class="header">
+        <h1>Dashboard</h1>
+    </div>
+
+    <div class="container">
+        <div class="card stats">
+            <div class="stat-item">
+                <h3>Total Pengguna</h3>
+                <p>2,359</p>
+            </div>
+            <div class="stat-item">
+                <h3>Kasus Stunting</h3>
+                <p>420</p>
+            </div>
+            <div class="stat-item">
+                <h3>Data Kesehatan</h3>
+                <p>2,035</p>
+            </div>
+            <div class="stat-item">
+                <h3>Parameter Aktif</h3>
+                <p>55</p>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>

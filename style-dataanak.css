@@ -1,0 +1,474 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #F49AC2; /* Menggunakan F49AC2 sebagai warna latar belakang */
+    color: #333; /* Teks berwarna hitam atau abu-abu gelap */
+}
+
+/* Navbar Styles */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #FFFFFF; /* Putih untuk latar navbar */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.navbar .logo {
+    display: flex;
+    align-items: center;
+}
+
+.navbar .logo img {
+    width: 60px;
+    margin-right: 15px;
+}
+
+.navbar nav a {
+    margin: 0 15px;
+    text-decoration: none;
+    color: #6689CC; /* Menggunakan 6689CC untuk teks navbar */
+    font-weight: bold;
+}
+.navbar .logo {
+    display: flex;
+    align-items: center;
+}
+.navbar .logo img {
+    width: 60px;
+    margin-right: 15px;
+}
+.navbar nav a {
+    margin: 0 15px;
+    text-decoration: none;
+    color: #6689CC;
+    font-weight: bold;
+}
+.login-btn {
+    padding: 10px 20px;
+    color: white;
+    background-color: #F49AC2;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.navbar .logo h2 {
+    color: #6689CC;
+    font-size: 24px;
+    margin: 0;
+}
+
+.profile-btn {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #6065d8;
+    border-radius: 20px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: fit-content;
+    margin: 20px 0;
+    text-decoration: none;
+    position: relative; /* Untuk memposisikan menu */
+}
+
+.profile-btn:hover {
+    background-color: #4a51b6;
+}
+
+.profile-img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%; /* Membuat gambar menjadi lingkaran */
+    margin-right: 10px;
+    object-fit: cover;
+}
+
+.profile-name {
+    font-weight: bold;
+    font-size: 16px;
+    margin-right: 10px; /* Jarak antara nama dan ikon */
+}
+
+.profile-btn i {
+    font-size: 18px;
+    transition: transform 0.3s ease; /* Efek animasi saat ikon berputar */
+}
+
+.profile-menu {
+    display: none; /* Sembunyikan menu secara default */
+    position: absolute;
+    top: 100%; /* Tempatkan menu di bawah elemen profil */
+    right: 0;
+    background-color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    width: 150px;
+    padding: 10px 0;
+    z-index: 10;
+}
+
+.profile-menu .menu-item {
+    display: block;
+    padding: 10px 20px;
+    color: #6065d8;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.profile-menu .menu-item:hover {
+    background-color: #f1f1f1;
+    color: #333;
+}
+
+.profile-btn.active .profile-menu {
+    display: block; /* Tampilkan menu ketika tombol profil diklik */
+}
+
+.profile-btn.active i {
+    transform: rotate(180deg); /* Mengubah arah ikon panah saat menu aktif */
+}
+
+
+
+
+main {
+    margin-top: 30px;
+}
+
+.data-section h2 {
+    color: white;
+
+}
+.data-section {
+    background-color: #F49AC2; /* Menggunakan F49AC2 untuk bagian data */
+    border-radius: 15px;
+    padding: 30px;
+}
+
+.data-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.data-header h2 {
+    color: #ffffff; /* Menggunakan 6689CC untuk judul data */
+}
+
+.data-icon {
+    width: 50px;
+    height: 50px;
+}
+
+.info-card, .growth-data {
+    background-color: #FFFFFF; /* Putih untuk latar kartu info dan data */
+    border-radius: 10px;
+    margin-bottom: 20px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.info-card h3, .growth-data h3 {
+    color: black; /* Menggunakan F49AC2 untuk warna heading dalam kartu */
+}
+
+/* Tabel Styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #fff; /* Latar belakang putih untuk tabel */
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+th {
+    background-color: #f4f4f4; /* Latar belakang abu-abu muda untuk header */
+    font-weight: bold;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f9f9f9; /* Pewarnaan baris genap agar lebih jelas */
+}
+
+tbody tr:hover {
+    background-color: #eaeaea; /* Efek hover pada baris */
+}
+
+/* Styling for Headers */
+h2, h3 {
+    color: white;
+    text-align: center;
+    font-size: 24px;
+    margin-top: 20px;
+}
+
+/* Button Styling (Optional) */
+button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+
+button:hover {
+    background-color: #F49AC2; /* Menggunakan F49AC2 untuk efek hover tombol */
+}
+
+footer {
+    background-color: #6689CC; /* Menggunakan 6689CC untuk footer */
+    color: white;
+    text-align: center;
+    padding: 10px;
+    border-radius: 10px;
+    margin-top: 40px;
+}
+
+footer p {
+    margin: 0;
+}
+
+.data-header {
+    display: flex;
+    justify-content: center; /* Memusatkan konten secara horizontal */
+    align-items: center; /* Memusatkan konten secara vertikal */
+    margin-bottom: 20px;
+}
+
+.data-header h2 {
+    color: #ffffff; /* Menggunakan warna biru */
+    font-size: 28px; /* Ukuran font lebih besar */
+    margin-right: 20px; /* Memberikan jarak antara teks dan gambar */
+}
+
+.data-icon {
+    width: 200px; /* Membesarkan gambar */
+    height: 100px; /* Membesarkan gambar */
+    object-fit: cover; /* Memastikan gambar tidak terdistorsi */
+}
+
+footer {
+    background-color: #E7C7D5; /* Pinkish background color */
+    padding: 15px 0; /* Adjust padding to fit the image's height */
+    color: #6689CC; /* Dark text color */
+}
+
+.footer-content {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* Align items to the left */
+    padding: 0 40px; /* Adjust padding for spacing */
+}
+
+.footer-logo img {
+    width: 120px; /* Adjust logo size to match image proportion */
+    margin-right: 20px; /* Add space between logo and text */
+}
+
+.footer-text p {
+    margin: 0; /* Remove margin between paragraphs */
+    font-size: 16px; /* Set font size for better legibility */
+    font-family: Arial, sans-serif;
+}
+
+.footer-text p:first-child {
+    font-weight: bold; /* Make the "Stunt Watch" text bold */
+}
+
+
+/* Style for the modal */
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4); 
+}
+
+.modal-content {
+    background-color: white;
+    padding: 20px;
+    margin: 15% auto;
+    width: 50%;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.close-btn {
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+form input, form button {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+form button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+}
+
+form button:hover {
+    background-color: #45a049;
+}
+
+
+main {
+    padding: 20px;
+}
+
+.recommendation-section {
+    background-color: #6689CC;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.recommendation-header h2 {
+    font-size: 28px;
+    font-weight: 600;
+    text-align: center;
+    color: #f9f4f4;
+}
+
+.recommendation-box {
+    background-color: #f9f4f4;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+.recommendation-box h3 {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.recommendation-box p, .recommendation-box ul {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #333;
+}
+
+
+
+
+        
+
+
+
+.navbar .logo h2 {
+    margin-left: 10px;
+}
+.content {
+    margin-top: 20px;
+}
+.card {
+    background: linear-gradient(135deg, #f9f9f9, #ffffff);
+    border: 2px solid #ccc;
+    border-radius: 15px;
+    padding: 20px 25px;
+    width: 80%; /* Disesuaikan agar tidak terlalu lebar */
+    max-width: 600px; /* Membatasi lebar maksimal */
+    margin: 20px auto; /* Tengah halaman */
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3);
+}
+.card .details {
+    flex: 1;
+    margin-right: 30px;
+}
+.details div {
+    margin-bottom: 15px;
+    font-size: 18px;
+    color: #333;
+}
+.details span {
+    font-weight: 700;
+    color: #007bff;
+}
+.recommend-button {
+    background: #007bff;
+    color: white;
+    text-decoration: none;
+    padding: 15px 30px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 8px;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+.recommend-button:hover {
+    background: #0056b3;
+    transform: scale(1.05);
+}
+
+img {
+    max-width: 150px;
+    height: auto;
+    border-radius: 8px;
+    border: 2px solid #ddd;
+}
+
+.rekomendasi-form {
+    text-align: left;
+}
+
+.rekomendasi-form h2 {
+    color: #E91E63;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+
+
+
+

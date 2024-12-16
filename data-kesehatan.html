@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Kesehatan</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fce4ec;
+        }
+
+        /* Sidebar styling */
+        .sidebar {
+            width: 250px;
+            background-color: #f8bbd0;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            padding-top: 20px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .sidebar h1 {
+            font-size: 24px;
+            color: white;
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 10px 0;
+            background-color: #ec407a;
+            border-radius: 5px;
+        }
+
+        .sidebar ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .sidebar ul li {
+            padding: 15px 20px;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            border-bottom: 1px solid #ec407a;
+        }
+
+        .sidebar ul li a {
+            color: white;
+            text-decoration: none;
+            display: block;
+            width: 100%;
+        }
+
+        .sidebar ul li:hover {
+            background-color: #ec407a;
+            transform: translateX(5px);
+        }
+
+        .sidebar ul li.active {
+            background-color: #d81b60;
+            font-weight: bold;
+        }
+
+        .sidebar ul li.active a {
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 200px;
+            }
+
+            .container {
+                margin-left: 200px;
+            }
+
+            .header {
+                margin-left: 200px;
+            }
+        }
+
+        .header {
+            background-color: #f8bbd0;
+            padding: 1px;
+            margin-left: 250px;
+            color: white;
+            margin-right: 2px;
+            font-size: 24px;
+            text-align: center; 
+        }
+
+        .container {
+            margin-left: 250px;
+            padding: 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        table th,
+        table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+
+        table th {
+            background-color: #f8bbd0;
+            color: white;
+        }
+
+        .actions button {
+            margin: 0 5px;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .actions .edit {
+            background-color: #4caf50;
+            color: white;
+        }
+
+        .actions .delete {
+            background-color: #f44336;
+            color: white;
+        }
+
+        .add-user {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .add-user button {
+            padding: 10px 20px;
+            background-color: #2196f3;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            width: 300px;
+            text-align: center;
+        }
+
+        .modal-content input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .modal-content button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .modal-content .save {
+            background-color: #4caf50;
+            color: white;
+        }
+
+        .modal-content .close {
+            background-color: #f44336;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h1>Stunt Watch</h1>
+        <ul>
+            <li><a href="admin.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+            <li><a href="pengguna.html"><i class="fas fa-user"></i> Pengguna</a></li>
+            <li class="active"><a href="data-kesehatan.html"><i class="fas fa-heartbeat"></i> Data Kesehatan</a></li>
+            <li><a href="statistik.html"><i class="fas fa-chart-bar"></i> Statistik</a></li>
+            <li><a href="parameter.html"><i class="fas fa-cog"></i> Parameter</a></li>
+            <li><a href="login.html"></i> Logout</a></li>
+        </ul>
+    </div>
+
+    <div class="header">
+        <h1>Data Kesehatan</h1>
+    </div>
+
+    <div class="container">
+        <div class="export-data">
+            <button id="addDataBtn">Tambah Data</button>
+       
+        </div>
+
+        <div class="card">
+            <h3>Data Kesehatan</h3>
+            <table id="healthTable">
+                <thead>
+                    <tr>
+                        <th>Nama Anak</th>
+                        <th>Usia (Tahun)</th>
+                        <th>Tinggi (cm)</th>
+                        <th>Berat (kg)</th>
+                        <th>Tanggal</th>
+                        <th>Status</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Kangguru</td>
+                        <td>4</td>
+                        <td>85</td>
+                        <td>12.5</td>
+                        <td>15/03/2023</td>
+                        <td>Normal</td>
+                        <td class="actions">
+                            <button class="edit">Edit</button>
+                            <button class="delete">Hapus</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="modal" id="dataModal">
+        <div class="modal-content">
+            <h3>Tambah/Edit Data</h3>
+            <input type="text" id="childName" placeholder="Nama Anak">
+            <input type="number" id="childAge" placeholder="Usia (Tahun)">
+            <input type="number" id="childHeight" placeholder="Tinggi (cm)">
+            <input type="number" id="childWeight" placeholder="Berat (kg)">
+            <input type="date" id="dataDate">
+            <button class="save">Simpan</button>
+            <button class="close">Tutup</button>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script>
+        const addDataBtn = document.getElementById('addDataBtn');
+        const dataModal = document.getElementById('dataModal');
+        const closeModal = document.querySelector('.modal-content .close');
+        const saveBtn = document.querySelector('.modal-content .save');
+        const healthTable = document.getElementById('healthTable').querySelector('tbody');
+        const exportBtn = document.getElementById('exportBtn');
+
+        addDataBtn.addEventListener('click', () => {
+            dataModal.style.display = 'flex';
+        });
+
+        closeModal.addEventListener('click', () => {
+            dataModal.style.display = 'none';
+        });
+
+        saveBtn.addEventListener('click', () => {
+            const childName = document.getElementById('childName').value;
+            const childAge = document.getElementById('childAge').value;
+            const childHeight = document.getElementById('childHeight').value;
+            const childWeight = document.getElementById('childWeight').value;
+            const dataDate = document.getElementById('dataDate').value;
+
+            if (childName && childAge && childHeight && childWeight && dataDate) {
+                const newRow = document.createElement('tr');
+                newRow.innerHTML = `
+                    <td>${childName}</td>
+                    <td>${childAge}</td>
+                    <td>${childHeight}</td>
+                    <td>${childWeight}</td>
+                    <td>${dataDate}</td>
+                    <td>Normal</td>
+                    <td class="actions">
+                        <button class="edit">Edit</button>
+                        <button class="delete">Hapus</button>
+                    </td>
+                `;
+                healthTable.appendChild(newRow);
+
+                dataModal.style.display = 'none';
+                document.getElementById('childName').value = '';
+                document.getElementById('childAge').value = '';
+                document.getElementById('childHeight').value = '';
+                document.getElementById('childWeight').value = '';
+                document.getElementById('dataDate').value = '';
+            }
+        });
+
+        healthTable.addEventListener('click', (e) => {
+            if (e.target.classList.contains('delete')) {
+                e.target.closest('tr').remove();
+            }
+
+            if (e.target.classList.contains('edit')) {
+                const row = e.target.closest('tr');
+                const name = row.children[0].textContent;
+                const age = row.children[1].textContent;
+                const height = row.children[2].textContent;
+                const weight = row.children[3].textContent;
+                const date = row.children[4].textContent;
+
+                document.getElementById('childName').value = name;
+                document.getElementById('childAge').value = age;
+                document.getElementById('childHeight').value = height;
+                document.getElementById('childWeight').value = weight;
+                document.getElementById('dataDate').value = date;
+
+                dataModal.style.display = 'flex';
+
+                saveBtn.addEventListener('click', () => {
+                    row.children[0].textContent = document.getElementById('childName').value;
+                    row.children[1].textContent = document.getElementById('childAge').value;
+                    row.children[2].textContent = document.getElementById('childHeight').value;
+                    row.children[3].textContent = document.getElementById('childWeight').value;
+                    row.children[4].textContent = document.getElementById('dataDate').value;
+                    dataModal.style.display = 'none';
+                }, { once: true });
+            }
+        });
+
+       
+
+        
+
+
+        
+    </script>
+</body>
+</html>
